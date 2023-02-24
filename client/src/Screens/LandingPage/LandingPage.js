@@ -26,9 +26,29 @@ const LandingPage = () => {
                     },
                 });
 
-                const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
-             console.log(ImgHash); 
-//Take a look at your Pinata Pinned section, you will see a new file added to you list.   
+                const ImgHash = `${resFile.data.IpfsHash}`;
+                console.log(ImgHash);
+                //Take a look at your Pinata Pinned section, you will see a new file added to you list.     
+                    const metadata = {
+                        image: `https://gateway.pinata.cloud/ipfs/${ImgHash}`,
+                        name: fileImg.name,
+                        description: "some Description",
+                        owner: "sameer"
+                    }
+                    const pinataJSONBody = {
+                        pinataContent: metadata
+                    };
+                    const jsonResponse = await axios.post("https://api.pinata.cloud/pinning/pinJSONToIPFS", pinataJSONBody, {
+                        headers: {
+                            "Content-Type": `application/json`,
+                            pinata_api_key: "00095538e20c1dd853b4",
+                            pinata_secret_api_key:`19e0a8f9429a8c6ffdc278847ecd936e01b630c8ae4adbaa6eb77cad02179bf5` ,
+                        },
+                    });
+                    const { data: jsonData = {} } = jsonResponse;
+                    const { IpfsHash } = jsonData;
+                    const tokenURI = `https://gateway.pinata.cloud/ipfs/${IpfsHash}`;
+                    console.log(tokenURI);
 
 
 
@@ -38,6 +58,9 @@ const LandingPage = () => {
             }
         }
     }
+
+
+
     return (
         <div>
             <LandingNavbar />
@@ -231,7 +254,7 @@ const LandingPage = () => {
                     </div>
                 </div>
             </footer>
-                <input type="file" onChange={(e) => setFileImg(e.target.files[0])} required />
+            <input type="file" onChange={(e) => setFileImg(e.target.files[0])} required />
             <button onClick={sendFileToIPFS}>Mint NFT</button>
         </div>
     )

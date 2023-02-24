@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../HomeComponents/Navbar'
 import Searchbar from '../../HomeComponents/Searchbar'
 import Sidebar from '../../HomeComponents/Sidebar'
+import eth from '../../images/eth.gif'
 
 const CreateNFTScreen = () => {
     return (
@@ -28,9 +29,13 @@ const CreateNFTScreen = () => {
                 <h1 className='text-xl font-bold mt-7 my-2'>Name</h1>
                 <input type="email" id="email" aria-describedby="helper-text-explanation" class="border bg-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[26.5rem] p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Item name" />
 
-                <h1 className='text-xl font-bold mt-7'>External Link</h1>
-                <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">NP will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-                <input type="email" id="email" aria-describedby="helper-text-explanation" class="border bg-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[26.5rem] p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://yoursite.com" />
+                <h1 className='text-xl font-bold mt-7 my-2'>Set a price</h1>
+                    <div class="flex">
+                        <div class="relative w-half">
+                            <input type="search" id="search-dropdown" class="block p-2.5 w-half z-20 text-sm text-white-900 rounded-l-lg bg-black border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-white-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter Amount" required />
+                        </div>
+                        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white-900 border border-gray-300 rounded-r-lg focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button" ><img src={eth} className="h-5 w-5 mr-2"></img>Ethereum </button>
+                    </div>
 
                 <h1 className='text-xl font-bold mt-7'>Description</h1>
                 <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">The description will be included on the item's detail page underneath its image. Markdown syntax is supported.</p>

@@ -11,6 +11,7 @@ import YourNFTScreen from './Screens/YourNFTScreeen/YourNFTScreen';
 import SellNFTScreen from './Screens/SellNFTScreen/SellNFTScreen';
 import AuctionScreen from './Screens/AuctionScreen/AuctionScreen';
 import Cart from './HomeComponents/Cart';
+import LandingPage from './Screens/LandingPage/LandingPage';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
             <Route exact path='/profile/nft' element={<YourNFTScreen/>} />
             <Route exact path='/sell' element={<SellNFTScreen/>} />
             <Route exact path='/auction' element={<AuctionScreen/>} />
-            
+            <Route exact path='/about' element={<LandingPage/>} />
           </Routes>
         </Router>
         {href === "cart" ?  <Cart/> : <></>}

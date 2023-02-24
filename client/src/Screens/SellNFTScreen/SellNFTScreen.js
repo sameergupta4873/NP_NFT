@@ -86,7 +86,7 @@ const SellNFTScreen = () => {
                     <img src={one} height={"500px"} width={"350px"}></img>
                     <h3 class="mt-4 text-sm text-gray-500 font-semibold">NFT Name</h3>
                     <h3 class="mt-1 text-sm text-gray-500 font-semibold">Collection Name</h3>
-                    <p class="mt-3 text-lg font-medium text-gray-500 flex"><img src={eth} className="h-7 w-5"></img><p className="ml-2">48</p></p>
+                    <p class="mt-3 text-lg font-medium text-gray-500 flex"><p className="ml-2">48</p></p>
                 </div>
             </div>
         </div>

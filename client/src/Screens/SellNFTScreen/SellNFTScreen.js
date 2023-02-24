@@ -50,42 +50,37 @@ const SellNFTScreen = () => {
                             <input type="search" id="search-dropdown" class="block p-2.5 w-half z-20 text-sm text-white-900 rounded-l-lg bg-black border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-white-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter Amount" required />
                         </div>
                         <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white-900 border border-gray-300 rounded-r-lg focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button" ><img src={eth} className="h-5 w-5 mr-2"></img>Ethereum </button>
-
-                        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
-                                </li>
-                            </ul>
-                        </div>
-
                     </div>
 
-                    <h1 className='text-xl font-bold mt-7'>External Link</h1>
-                    <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">NP will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>
-                    <input type="email" id="email" aria-describedby="helper-text-explanation" class="border bg-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[26.5rem] p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://yoursite.com" />
+                    <h1 className='text-xl font-bold mt-7 mb-2'>Set Duration</h1>
+                    <input type="email" id="email" aria-describedby="helper-text-explanation" class="border bg-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[26.5rem] p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
 
-                    <h1 className='text-xl font-bold mt-7'>Description</h1>
-                    <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">The description will be included on the item's detail page underneath its image. Markdown syntax is supported.</p>
-                    <textarea id="message" rows="4" class="block p-2.5 w-full text-sm bg-black rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-                    <h1 className='text-xl font-bold mt-7'>Blockchain</h1>
-                    <select disabled class="bg-black border mt-2 border-gray-300 text-sm rounded-lg block w-[26.5rem] p-2.5 text-white">
-                        <option selected>Ethereum</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
-                    </select>
-                    <button type="button" class="mt-7 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-7 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</button>
+                    <div date-rangepicker class="flex items-center mt-3">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            </div>  
+                            <input name="start" type="text" class="bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start" />
+                        </div>
+                        <span class="mx-4 text-gray-500">to</span>
+                        <div class="relative"> 
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <input name="end" type="text" class="bg-black border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end" />
+                        </div>
+                    </div>
+
+
+                    <h1 className='text-2xl font-bold mt-7'>Summary</h1>
+                    <div class="flex justify-between">
+                    <h3 class="mt-4 text-l text-white-900 font-semibold">NFT Name</h3>
+                    <h3 class=" flex mt-4 text-l text-white-900 font-semibold w-[4rem] "><img src={eth} className="h-5 w-5 mr-2"></img>ETH</h3>
+                    </div>
+                    <div class="flex justify-between">
+                    <h3 class="mt-4 text-l text-white-900 font-semibold">Service Fee</h3>
+                    <h3 class=" flex mt-4 text-l text-white-900 font-semibold w-[4rem] "><img src={eth} className="h-5 w-5 mr-2"></img>ETH</h3>
+                    </div>
                 </div>
                 <div className='border glass p-5 fixed left-[50rem] top-[10rem]'>
                     <img src={one} height={"500px"} width={"350px"}></img>

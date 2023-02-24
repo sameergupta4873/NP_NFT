@@ -120,6 +120,11 @@ backdrop-filter: blur(1.1px);
       0 0 151px #0fa;
 }
 
+.hero{
+  background-image: linear-gradient( 89.4deg,  rgba(194,0,39,1) 0.8%, rgba(10,35,104,1) 99.4% );
+
+}
+
 
 
 

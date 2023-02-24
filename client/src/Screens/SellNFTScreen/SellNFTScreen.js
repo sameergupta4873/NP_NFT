@@ -29,14 +29,17 @@ const SellNFTScreen = () => {
             <div className='flex'>
                 <div className='my-10 ml-[10rem] w-[35rem]'>
                     <h1 className='text-3xl font-bold my-7'>List For Sale</h1>
-                    <h1 className='text-xl font-bold mt-7 my-2'>input</h1>
-                    <div class="flex w-[26.5rem] mt-5 items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-                        <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                        <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-gray-200">Default radio</label>
+                    <h1 className='text-xl font-bold mt-7 my-2'>Choose a type of sale</h1>
+                    <div class="flex w-[26.5rem] mt-5 items-center pl-4 border border-gray-500 rounded-lg dark:border-gray-700">
+                        <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-400 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                        <label for="bordered-radio-1" class="w-full ml-3 text-sm font-medium text-gray-200">
+                            <h1 className='text-xl font-bold mt-2'>Fixed price</h1>
+                            <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">The item is listed at the price you set.</p>
+                        </label>
                     </div>
-                    <div class="flex w-[26.5rem] mt-5 items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                    <div class="flex w-[26.5rem] mt-5 items-center pl-4 border border-gray-500 rounded-lg dark:border-gray-700">
                         <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                        <label for="bordered-radio-2" class="w-full py-4 ml-2 text-sm font-medium text-gray-200">Checked state</label>
+                        <label for="bordered-radio-2" class="w-full ml-3 text-sm font-medium text-gray-200"><h1 className='text-xl font-bold my-2'>Timed auction</h1></label>
                     </div>
 
 

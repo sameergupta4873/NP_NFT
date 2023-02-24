@@ -13,8 +13,10 @@ import Searchbar from "../../HomeComponents/Searchbar";
 import Card from "../../HomeComponents/Card";
 import TopBid from "../../HomeComponents/TopBid";
 import Navbar from "../../HomeComponents/Navbar";
+import { useNavigate } from "react-router-dom";
 
 const YourNFTScreen = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <div className="fixed mt-[5rem]">
@@ -32,13 +34,13 @@ const YourNFTScreen = () => {
                 <h1 className='text-3xl font-bold my-7'>My Collections</h1>
                 <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                     <div className="">
-                        <a href="/detail" class="">
+                        <a class="">
                             <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                                 <img src={four} alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75" />
                             </div>
                             <div className="flex justify-between mt-3 px-1">
                                 <h3 class="mt-4 text-sm text-gray-500 font-semibold">Earthen Bottle</h3>
-                                <button type="button" class="text-white mt-2  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">SELL</button>
+                                <button type="button" class="text-white mt-2  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={()=>{navigate('/sell')}}>SELL</button>
                             </div>
                         </a>
                     </div>

@@ -9,7 +9,7 @@ const GenerateNFT = () => {
   const submitPrompt = () => {
     const data = JSON.stringify({
       "prompt": `${Prompt}`,
-      "n": 1,
+      "n": 4,
       "size": "1024x1024"
     });
     const options = {

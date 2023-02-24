@@ -24,8 +24,8 @@ function App() {
           <Routes>
             <Route exact path='/' element={<HomeScreen />} />
             <Route exact path='/detail' element={<NFTDetail />} />
-            {/* <Route exact path='/auth' element={<WalletCard/>} />
-            <Route exact path='/login' element={<LoginScreen/>} /> */}
+             {/* <Route exact path='/auth' element={<WalletCard/>} /> */}
+            <Route exact path='/login' element={<LoginScreen/>} />
             {/* <Route exact path='/generate' element={<GenerateNFT/>} /> */}
             <Route exact path='/create' element={<CreateNFTScreen/>} />
             <Route exact path='/profile/nft' element={<YourNFTScreen/>} />

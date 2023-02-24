@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Cart from './Cart';
 
-const Navbar = () => {
+const Navbar = ({user}) => {
     const navigate = useNavigate();
     return (
         <div className='mt-2 w-80 ml-[29rem] z-50 glass'>

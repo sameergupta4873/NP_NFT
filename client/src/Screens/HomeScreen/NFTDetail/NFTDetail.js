@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../../../HomeComponents/Card'
+import Carousel from '../../../HomeComponents/Carousel'
 import FeaturedNFT from '../../../HomeComponents/FeaturedNFT'
 import Navbar from '../../../HomeComponents/Navbar'
 import Searchbar from '../../../HomeComponents/Searchbar'
@@ -109,6 +110,10 @@ const NFTDetail = () => {
                         </section>
 
                     </div>
+                </div>
+                <h1 className='text-2xl font-bold ml-[7.5rem]'>Notable Collections</h1>
+                <div className='mt-10 p-5 ml-[7.5rem]'>
+                    <Carousel/>
                 </div>
             </div>
         </div>

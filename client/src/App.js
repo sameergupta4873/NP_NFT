@@ -9,9 +9,13 @@ import GenerateNFT from './Screens/GenerateNFTScreen/GenerateNFT';
 import CreateNFTScreen from './Screens/CreateNFTScreen/CreateNFTScreen';
 import YourNFTScreen from './Screens/YourNFTScreeen/YourNFTScreen';
 import SellNFTScreen from './Screens/SellNFTScreen/SellNFTScreen';
+import AuctionScreen from './Screens/AuctionScreen/AuctionScreen';
+import Cart from './HomeComponents/Cart';
 
 
 function App() {
+  const href = window.location.href.split('?')[1];
+  console.log(href);
   return (
     <>
       <div className="App">
@@ -26,8 +30,11 @@ function App() {
             <Route exact path='/create' element={<CreateNFTScreen/>} />
             <Route exact path='/profile/nft' element={<YourNFTScreen/>} />
             <Route exact path='/sell' element={<SellNFTScreen/>} />
+            <Route exact path='/auction' element={<AuctionScreen/>} />
+            
           </Routes>
         </Router>
+        {href === "cart" ?  <Cart/> : <></>}
       </div>
     </>
   );

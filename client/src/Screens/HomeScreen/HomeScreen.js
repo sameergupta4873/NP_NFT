@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../HomeComponents/Sidebar";
 import one from '../../images/one.jpg'
 import two from '../../images/two.jpg'
@@ -13,11 +13,11 @@ import Searchbar from "../../HomeComponents/Searchbar";
 import Card from "../../HomeComponents/Card";
 import TopBid from "../../HomeComponents/TopBid";
 import Navbar from "../../HomeComponents/Navbar";
+import Cart from "../../HomeComponents/Cart";
 
 
 const HomeScreen = () => {
-
-
+  const [cart, setCart] = useState(false);
   return (
     <div>
       <div className="fixed mt-[5rem]">
@@ -28,7 +28,7 @@ const HomeScreen = () => {
           <Searchbar />
         </div>
         <div className='fixed top-1 right-[1.5rem]'>
-          <Navbar />
+          <Navbar setCart={setCart} />
         </div>
       </div>
       <div className="mt-[1.5rem] ml-[7.5rem]">
@@ -244,6 +244,8 @@ const HomeScreen = () => {
       <div className="fixed top-[5.7rem] right-[3.5rem]">
         <TopBid />
       </div>
+
+      {/* {href === "cart" ?  <Cart/> : <></>} */}
 
     </div>
   );

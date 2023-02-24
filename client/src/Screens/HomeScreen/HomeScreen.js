@@ -93,6 +93,8 @@ const HomeScreen = () => {
       .then(userData => userData)
       .catch(() => console.log('Not signed in'));
   }
+
+
   return (
     <div>
       <div className="fixed mt-[5rem]">

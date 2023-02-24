@@ -39,12 +39,36 @@ const SellNFTScreen = () => {
                     </div>
                     <div class="flex w-[26.5rem] mt-5 items-center pl-4 border border-gray-500 rounded-lg dark:border-gray-700">
                         <input checked id="bordered-radio-2" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                        <label for="bordered-radio-2" class="w-full ml-3 text-sm font-medium text-gray-200"><h1 className='text-xl font-bold my-2'>Timed auction</h1></label>
+                        <label for="bordered-radio-2" class="w-full ml-3 text-sm font-medium text-gray-200"><h1 className='text-xl font-bold my-2'>Timed auction</h1>
+                            <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">The item is listed for auction.</p></label>
                     </div>
 
 
-                    <h1 className='text-xl font-bold mt-7 my-2'>Name</h1>
-                    <input type="email" id="email" aria-describedby="helper-text-explanation" class="border bg-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[26.5rem] p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Item name" />
+                    <h1 className='text-xl font-bold mt-7 my-2'>Set a price</h1>
+                    <div class="flex">
+                        <div class="relative w-half">
+                            <input type="search" id="search-dropdown" class="block p-2.5 w-half z-20 text-sm text-white-900 rounded-l-lg bg-black border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-white-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter Amount" required />
+                        </div>
+                        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white-900 border border-gray-300 rounded-r-lg focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button" ><img src={eth} className="h-5 w-5 mr-2"></img>Ethereum </button>
+
+                        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                                <li>
+                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
 
                     <h1 className='text-xl font-bold mt-7'>External Link</h1>
                     <p id="helper-text-explanation" class="text-sm text-gray-500 mb-2 dark:text-gray-400">NP will include a link to this URL on this item's detail page, so that users can click to learn more about it. You are welcome to link to your own webpage with more details.</p>

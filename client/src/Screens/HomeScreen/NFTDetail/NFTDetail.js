@@ -24,7 +24,7 @@ const NFTDetail = () => {
             </div>
 
             <div class="mt-[-4rem] ml-[0rem]">
-                <div class="rounded-lg">
+                <div class="rounded-lg ml-[5rem]">
                     <div class="bg-transparent">
                         <section class="text-gray-700 w-full body-font bg-transparent">
                             <div class="container py-24 mx-auto">

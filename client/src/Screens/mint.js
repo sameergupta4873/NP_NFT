@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { create, create as ipfsHttpClient } from "ipfs-http-client";
 
+import axios from "axios";
 const API_Key = "00095538e20c1dd853b4";
 const API_Secret =
   "19e0a8f9429a8c6ffdc278847ecd936e01b630c8ae4adbaa6eb77cad02179bf5";
@@ -27,68 +27,55 @@ export const Mint = ({ marketplace, nft }) => {
     }
   };
   const client = null;
-  const [image, setImage] = useState("");
   const [price, setPrice] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [fileImg, setFileImg] = useState(null);
+  const [image, setImage] = useState(null);
 
+  const sendFileToIPFS = async (e) => {
+    if (fileImg) {
+      console.log(fileImg);
+      try {
+        const formData = new FormData();
+        formData.append("file", fileImg);
 
-
-
-  const uploadToIPFS = async (event) => {
-
-
-    event.preventDefault();
-    const file = event.target.files[0];
-
-    const formData = new FormData();
-
-    formData.append("file", file);
-    console.log(file)
-    try {
-      const fileResponse = await fetch(
-        "https://api.pinata.cloud/pinning/pinFileToIPFS",
-        {
-          method: "POST",
-          body: formData,
+        const resFile = await axios({
+          method: "post",
+          url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+          data: formData,
           headers: {
-            "content-type": `multipart/form-data`,
-            pinata_api_key: API_Key,
-            pinata_secret_api_key: API_Secret,
+            pinata_api_key: `00095538e20c1dd853b4`,
+            pinata_secret_api_key: `19e0a8f9429a8c6ffdc278847ecd936e01b630c8ae4adbaa6eb77cad02179bf5`,
+            "Content-Type": "multipart/form-data",
           },
-        }
-      );
-      const fileJson = await fileResponse.json();
-      console.log(fileJson)
-      const { data: fileData = {} } = fileJson;
+        });
 
-      const { IpfsHash } = fileData;
-      const fileIPFS = `https://gateway.pinata.cloud/ipfs/${IpfsHash}`;
+        setImage(resFile.data.IpfsHash);
+        const ImgHash = `ipfs://${resFile.data.IpfsHash}`;
+        console.log(ImgHash);
+        createNFT();
+        //Take a look at your Pinata Pinned section, you will see a new file added to you list.
+      } catch (error) {
+        console.log("Error sending File to IPFS: ");
+        console.log(error);
+      }
 
-      console.log(fileIPFS);
-    } catch (err) {
-      console.log(err);
     }
   };
 
   const createNFT = async () => {
-    if (!image || !price || !name || !description) return;
-    try {
-      const result = await client.add(
-        JSON.stringify({ image, price, name, description })
-      );
+      mintThenList(image);
 
-      mintThenList(result);
-    } catch (error) {
-      console.log("ipfs uri upload error: ", error);
-    }
   };
 
   const mintThenList = async (result) => {
-    const uri = `${result.path}`;
+    const uri = result;
+    
     // mint nft
     await (await nft.mint(uri)).wait();
     // get tokenId of new nft
+    console.log("Fs");
     const id = await nft.tokenCount();
     // approve marketplace to spend nft
     await (await nft.setApprovalForAll(marketplace.address, true)).wait();
@@ -99,35 +86,31 @@ export const Mint = ({ marketplace, nft }) => {
 
   return (
     <div>
-      <h1>heuhhh???</h1>
-      <input type="file" required name="file" onChange={(e) => uploadToIPFS(e.target.files[0])} />
-
       <input
-        onChange={(e) => setName(e.target.value)}
-        size="lg"
+        type="file"
+        onChange={(e) => setFileImg(e.target.files[0])}
         required
+      />
+      <input
         type="text"
         placeholder="Name"
+        onChange={(e) => setName(e.target.value)}
+        required
       />
-
       <input
-        onChange={(e) => setDescription(e.target.value)}
-        size="lg"
-        required
-        as="textarea"
+        type="text"
         placeholder="Description"
-      />
-      <intput
-        onChange={(e) => setPrice(e.target.value)}
-        size="lg"
+        onChange={(e) => setDescription(e.target.value)}
         required
-        type="number"
-        placeholder="Price in ETH"
       />
-
-      <button onClick={connect} variant="primary" size="lg">
-        Create & List NFT
-      </button>
+      <input
+        type="number"
+        placeholder="Price"
+        onChange={(e) => setPrice(e.target.value)}
+        required
+      />
+      
+      <button onClick={sendFileToIPFS}>Mint NFT</button>
     </div>
   );
 };

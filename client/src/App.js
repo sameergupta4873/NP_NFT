@@ -25,7 +25,6 @@ import NFTAddress from './contractsData/NFT-address.json'
 
 function App() {
   const href = window.location.href.split('?')[1];
-  console.log(href);
 
 
   const [account, setAccount] = useState(null)
@@ -74,11 +73,11 @@ function App() {
         
         <Router>
           <Routes>
-            <Route exact path='/' element={<HomeScreen />} />
+            <Route exact path='/' element={<HomeScreen marketplace = {marketplace} nft = {nft} />} />
             <Route exact path='/detail' element={<NFTDetail />} />
              <Route exact path='/auth' element={<WalletCard/>} />
             <Route exact path='/login' element={<LoginScreen/>} />
-            <Route exact path='/generate' element={<GenerateNFT Marketplace = {marketplace} NFT = {nft} />} />
+            <Route exact path='/generate' element={<GenerateNFT marketplace = {marketplace} nft = {nft} />} />
             <Route exact path='/create' element={<CreateNFTScreen/>} />
             <Route exact path='/profile/nft' element={<YourNFTScreen/>} />
             <Route exact path='/sell' element={<SellNFTScreen/>} />

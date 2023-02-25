@@ -51,7 +51,7 @@ const updatedAwsConfig = {
 Amplify.configure(updatedAwsConfig);
 
 
-const HomeScreen = () => {
+const HomeScreen = ({marketplace, nft}) => {
   const [cart, setCart] = useState(false);
   const userDetails = useSelector((state) => state.userLogin);
   const { userInfo } = userDetails;
@@ -86,12 +86,43 @@ const HomeScreen = () => {
     if (user) {
       localStorage.setItem("userInfo", JSON.stringify(user.attributes));
     }
+
   }, [])
+
+  useEffect(() => {
+    loadMarketplaceItems()
+    })
+  
 
   function getUser() {
     return Auth.currentAuthenticatedUser()
       .then(userData => userData)
       .catch(() => console.log('Not signed in'));
+  }
+
+
+  const loadMarketplaceItems = async () => {
+    if(!marketplace) return
+    // Load all unsold items
+    console.log(marketplace)
+    const itemCount = await marketplace.itemCount();
+    console.log("world")
+    
+    let items = []
+    for (let i = 1; i <= itemCount; i++) {
+      const item = await marketplace.items(i)
+      if (!item.sold) {
+        // get uri url from nft contract
+        const uri = await nft.tokenURI(item.tokenId)
+        // use uri to fetch the nft metadata stored on ipfs 
+        const response = await fetch(uri)
+        const metadata = await response.json()
+        // get total price of item (item price + fee)
+        const totalPrice = await marketplace.getTotalPrice(item.itemId)
+
+        console.log(uri, metadata, totalPrice)
+      }
+    }
   }
 
 

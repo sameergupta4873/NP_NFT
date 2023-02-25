@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import LandingNavbar from '../../HomeComponents/LandingNavbar.mjs'
 import axios from 'axios'
+import { Amplify, Auth, Hub } from 'aws-amplify';
 
 const LandingPage = () => {
     const [image, setImage] = useState(null);

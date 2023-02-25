@@ -10,7 +10,7 @@ import eth from '../../images/eth.gif'
 import eight from '../../images/eight.png'
 import nine from '../../images/nine.png'
 import Searchbar from "../../HomeComponents/Searchbar";
-import Card from "../../HomeComponents/Card";
+import Card1 from "../../HomeComponents/Card";
 import TopBid from "../../HomeComponents/TopBid";
 import Navbar from "../../HomeComponents/Navbar";
 import Cart from "../../HomeComponents/Cart";
@@ -18,6 +18,9 @@ import { useSelector } from "react-redux";
 import { Amplify, Auth, Hub } from 'aws-amplify';
 import awsConfig from '../../aws-exports';
 import axios from "axios";
+import { ethers } from "ethers"
+import { Row, Col, Card, Button } from 'react-bootstrap'
+
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -52,13 +55,50 @@ const updatedAwsConfig = {
 Amplify.configure(updatedAwsConfig);
 
 
-const HomeScreen = () => {
+const HomeScreen = ({ marketplace, nft }) => {
   const [cart, setCart] = useState(false);
   const userDetails = useSelector((state) => state.userLogin);
   const { userInfo } = userDetails;
   const [user, setUser] = useState(null);
   const [list, setList] = useState([]);
   const [arr, intArr] = useState([]);
+  const [loading, setLoading] = useState(true)
+  const [items, setItems] = useState([])
+  const loadMarketplaceItems = async () => {
+    // Load all unsold items
+    const itemCount = await marketplace.itemCount()
+    let items = []
+    for (let i = 1; i <= itemCount; i++) {
+      const item = await marketplace.items(i)
+      if (!item.sold) {
+        // get uri url from nft contract
+        const uri = await nft.tokenURI(item.tokenId)
+        // use uri to fetch the nft metadata stored on ipfs 
+        const response = await fetch(uri)
+        const metadata = await response.json()
+        // get total price of item (item price + fee)
+        const totalPrice = await marketplace.getTotalPrice(item.itemId)
+        // Add item to items array
+        items.push({
+          totalPrice,
+          itemId: item.itemId,
+          seller: item.seller,
+          name: metadata.name,
+          description: metadata.description,
+          image: metadata.image
+        })
+      }
+    }
+    setLoading(false)
+    setItems(items)
+  }
+  const buyMarketItem = async (item) => {
+    await (await marketplace.purchaseItem(item.itemId, { value: item.totalPrice })).wait()
+    loadMarketplaceItems()
+  }
+  useEffect(() => {
+    loadMarketplaceItems()
+  }, [])
 
 
 
@@ -147,7 +187,7 @@ const HomeScreen = () => {
       </div>
       <div className="mt-[1.5rem] ml-[7.5rem]">
         <button onClick={getList}>list</button>
-        <Card />
+        <Card1 />
       </div>
       <h1 className="text-xl ml-[7.5rem] mt-10">
         <p>{user && `Hi, ${user.attributes.email}`}</p>
@@ -187,9 +227,43 @@ const HomeScreen = () => {
         <TopBid />
       </div>
 
+      <div className="flex justify-center">
+      {items.length > 0 ?
+        <div className="px-5 container">
+          <Row xs={1} md={2} lg={4} className="g-4 py-5">
+            {items.map((item, idx) => (
+              <Col key={idx} className="overflow-hidden">
+                <Card>
+                  <Card.Img variant="top" src={item.image} />
+                  <Card.Body color="secondary">
+                    <Card.Title>{item.name}</Card.Title>
+                    <Card.Text>
+                      {item.description}
+                    </Card.Text>
+                  </Card.Body>
+                  <Card.Footer>
+                    <div className='d-grid'>
+                      <Button onClick={() => buyMarketItem(item)} variant="primary" size="lg">
+                        Buy for {ethers.utils.formatEther(item.totalPrice)} ETH
+                      </Button>
+                    </div>
+                  </Card.Footer>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+        : (
+          <main style={{ padding: "1rem 0" }}>
+            <h2>No listed assets</h2>
+          </main>
+        )}
+    </div>
+
       {/* {href === "cart" ?  <Cart/> : <></>} */}
 
     </div>
+    
   );
 };
 

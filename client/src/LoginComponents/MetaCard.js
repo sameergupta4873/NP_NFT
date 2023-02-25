@@ -40,7 +40,7 @@ const WalletCard = () => {
     const getAccountBalance = (account) => {
         window.ethereum.request({ method: 'eth_getBalance', params: [account, 'latest'] })
             .then(balance => {
-                setUserBalance(ethers.formatEther(balance));
+                setUserBalance(ethers.utils.formatEther(balance));
             })
             .catch(error => {
                 setErrorMessage(error.message);

@@ -1,9 +1,4 @@
 <h1 align="center">
-
-
-  <a href="https://github.com/CommunityOfCoders/Inheritance-2022">
-    <img src="https://i.imgur.com/I2L6eDl.png" alt="CoC Inheritance 2022" width="500" height="166">
-  </a>
   <br>
   NFT Marketplace
 </h1>
